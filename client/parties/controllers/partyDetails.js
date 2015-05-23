@@ -1,14 +1,9 @@
 angular.module("socially").controller("PartyDetailsCtrl", ['$scope', '$stateParams', '$meteor',
   function($scope, $stateParams, $meteor){
 
-    $scope.party = $meteor.object(Parties, $stateParams.partyId);
+    $scope.party = $scope.$meteorObject(Parties, $stateParams.partyId).subscribe('parties');
 
-    var subscriptionHandle;
-    $meteor.subscribe('parties').then(function(handle) {
-      subscriptionHandle = handle;
-    });
-
-    $scope.users = $meteor.collection(Meteor.users, false).subscribe('users');
+    $scope.users = $scope.$meteorCollection(Meteor.users, false).subscribe('users');
 
     $scope.invite = function(user){
       $meteor.call('invite', $scope.party._id, user._id).then(
@@ -20,10 +15,6 @@ angular.module("socially").controller("PartyDetailsCtrl", ['$scope', '$statePara
         }
       );
     };
-
-    $scope.$on('$destroy', function() {
-      subscriptionHandle.stop();
-    });
     
     $scope.canInvite = function (){
         if (!$scope.party)
@@ -68,3 +59,18 @@ angular.module("socially").controller("PartyDetailsCtrl", ['$scope', '$statePara
     };
 
   }]);
+
+
+Meteor.publish("parties", function (options) {
+  return Parties.find({
+    $or:[
+      {$and:[
+        {"public": true},
+        {"public": {$exists: true}}
+      ]},
+      {$and:[
+        {owner: this.userId},
+        {owner: {$exists: true}}
+      ]}
+    ]}, options);
+});

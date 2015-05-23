@@ -6,21 +6,28 @@ angular.module("socially").controller("PartiesListCtrl", ['$scope', '$meteor', '
     $scope.sort = { name: 1 };
     $scope.orderProperty = '1';
 
-    $scope.users = $meteor.collection(Meteor.users, false).subscribe('users');
+    var xx = [
+      {name:"yooy", description:'asdfasdf'},
+      {name:"yooy1", description:'asdfasdf'},
+      {name:"yooy2", description:'asdfasdf'},
+      {name:"yooy3", description:'asdfasdf'}
+    ];
+
+    $scope.users = $scope.$meteorCollection(Meteor.users, false).subscribe('users');
     
-    $scope.parties = $meteor.collection(function() {
+    $scope.parties = $scope.$meteorCollection(function() {
       return Parties.find({}, {
         sort : $scope.getReactively('sort')
       });
     });
 
     $meteor.autorun($scope, function() {
-      $meteor.subscribe('parties', {
+      $scope.$meteorSubscribe('parties', {
         limit: parseInt($scope.getReactively('perPage')),
         skip: (parseInt($scope.getReactively('page')) - 1) * parseInt($scope.getReactively('perPage')),
         sort: $scope.getReactively('sort')
       }, $scope.getReactively('search')).then(function() {
-        $scope.partiesCount = $meteor.object(Counts ,'numberOfParties', false);
+        $scope.partiesCount = $scope.$meteorObject(Counts ,'numberOfParties', false);
 
         $scope.parties.forEach( function (party) {
           party.onClicked = function () {
@@ -35,6 +42,9 @@ angular.module("socially").controller("PartiesListCtrl", ['$scope', '$meteor', '
           },
           zoom: 8
         };
+
+        if (!$scope.parties[1].books)
+          $scope.parties[1].books = xx;
       });
     });
 

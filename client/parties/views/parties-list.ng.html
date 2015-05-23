@@ -57,10 +57,22 @@
     <div class="row">
       <div class="col-sm-8">
         <h2><a href="/parties/{{party._id}}">{{party.name}}</a></h2>
+        <input ng-model="party.name">
+        <input ng-model="party.description">
         <p>{{party.description}}</p>
       </div>
       <div class="col-sm-4">
         <a ng-click="remove(party)" class="close" ng-show="$root.currentUser && $root.currentUser._id == party.owner">&times;</a>
+      </div>
+      <div>
+        <ul>
+          <li ng-repeat="book in party.books">
+            <input ng-model="book.name">
+            <input ng-model="book.description">
+            <button ng-click="party.books.splice($index, 1)">X</button>
+            <button ng-click="party.books.push({name:'sdfsd', description:'newnew'})">new</button>
+          </li>
+        </ul>
       </div>
     </div>
 
