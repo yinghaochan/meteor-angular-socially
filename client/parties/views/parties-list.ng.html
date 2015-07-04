@@ -1,25 +1,25 @@
 <form>
   <label>Name</label>
-  <input ng-model="newParty.name">
+  <input ng-model="vm.newParty.name">
   <label>Description</label>
-  <input ng-model="newParty.description">
+  <input ng-model="vm.newParty.description">
   <label>Public</label>
-  <input type="checkbox" ng-model="newParty.public">
-  <button ng-click="newParty.owner=$root.currentUser._id;parties.push(newParty)">Add</button>
+  <input type="checkbox" ng-model="vm.newParty.public">
+  <button ng-click="vm.newParty.owner=$root.currentUser._id;vm.parties.push(vm.newParty)">Add</button>
 </form>
 <ul>
   <h1>Parties:</h1>
   <div>
-    <input type="search" ng-model="search" placeholder="Search">
-    <select ng-model="orderProperty">
+    <input type="search" ng-model="vm.search" placeholder="Search">
+    <select ng-model="vm.orderProperty">
       <option value="1">Ascending</option>
       <option value="-1">Descending</option>
     </select>
   </div>
-  <li dir-paginate="party in parties | itemsPerPage: perPage" total-items="partiesCount.count">
+  <li dir-paginate="party in vm.parties | itemsPerPage: vm.perPage" total-items="vm.partiesCount.count">
     <a href="/parties/{{party._id}}">{{party.name}}</a>
     <p>{{party.description}}</p>
-    <button ng-click="remove(party)">X</button>
+    <button ng-click="vm.remove(party)">X</button>
   </li>
 </ul>
-<dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
+<dir-pagination-controls on-page-change="vm.pageChanged(newPageNumber)"></dir-pagination-controls>
