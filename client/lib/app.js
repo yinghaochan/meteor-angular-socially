@@ -1,5 +1,10 @@
-angular.module('socially',['angular-meteor', 'ui.router', 'accounts.ui', 'angularUtils.directives.dirPagination']);
-
+angular.module('socially',[
+  'angular-meteor',
+  'ui.router',
+  'accounts.ui',
+  'angularUtils.directives.dirPagination',
+  'uiGmapgoogle-maps'
+]);
 function onReady() {
   angular.bootstrap(document, ['socially'], {
     strictDi: true
