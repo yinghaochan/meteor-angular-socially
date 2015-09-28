@@ -22,5 +22,6 @@ accounts-facebook
 accounts-twitter
 angularutils:pagination
 tmeasday:publish-counts
-check
 email
+check
+angularui:angular-google-maps
