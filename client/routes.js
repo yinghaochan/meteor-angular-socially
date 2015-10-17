@@ -22,8 +22,38 @@ angular.module("socially").config(function ($urlRouterProvider, $stateProvider, 
       templateUrl: 'client/parties/views/party-details.html',
       controller: 'PartyDetailsCtrl',
       resolve: {
-        "currentUser": function ($meteor) {
+        "currentUser": function($meteor){
           return $meteor.requireUser();
+        }
+      }
+    })
+    .state('login', {
+      url: '/login',
+      templateUrl: 'client/users/views/login.html',
+      controller: 'LoginCtrl',
+      controllerAs: 'lc'
+    })
+    .state('register',{
+      url: '/register',
+      templateUrl: 'client/users/views/register.html',
+      controller: 'RegisterCtrl',
+      controllerAs: 'rc'
+    })
+    .state('resetpw', {
+      url: '/resetpw',
+      templateUrl: 'client/users/views/reset-password.html',
+      controller: 'ResetCtrl',
+      controllerAs: 'rpc'
+    })
+    .state('logout', {
+      url: '/logout',
+      resolve: {
+        "logout": function($meteor, $state) {
+          return $meteor.logout().then(function(){
+            $state.go('parties');
+          }, function(err){
+            console.log('logout error - ', err);
+          });
         }
       }
     });
