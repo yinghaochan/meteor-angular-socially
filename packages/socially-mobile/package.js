@@ -9,6 +9,15 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('1.2.0.1');
   api.use('angular');
+
+  api.addFiles([
+    'client/lib/module.js',
+    'client/routes.js'
+  ], 'web.cordova');
+
+  api.addAssets([
+    'client/users/views/login-mobile.html'
+  ], 'web.cordova');
 });
 
 Package.onTest(function(api) {
