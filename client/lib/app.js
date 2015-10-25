@@ -14,6 +14,9 @@ var modulesToLoad = [
 if (Meteor.isCordova) {
   modulesToLoad = modulesToLoad.concat(['socially.mobile']);
 }
+else {
+  modulesToLoad = modulesToLoad.concat(['socially.browser']);
+}
 
 angular.module('socially', modulesToLoad);
 
