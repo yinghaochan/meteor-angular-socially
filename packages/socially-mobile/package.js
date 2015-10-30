@@ -12,13 +12,10 @@ Package.onUse(function(api) {
   api.use('angular');
 
   api.addFiles([
-    'client/lib/module.ng.js',
-    'client/routes.ng.js',
-    'client/users/controllers/login.ng.js'
-  ], 'web.cordova');
-
-  api.addAssets([
-    'client/users/views/login-mobile.ng.html'
+    'client/lib/module.js',
+    'client/routes.js',
+    'client/users/controllers/login.js',
+    'client/users/views/login-mobile.html'
   ], 'web.cordova');
 });
 

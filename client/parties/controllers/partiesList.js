@@ -1,4 +1,5 @@
-angular.module("socially").controller("PartiesListCtrl", function ($scope, $meteor, $rootScope, $state, $mdDialog, $filter) {
+angular.module("socially").controller("PartiesListCtrl", ['$scope', '$meteor', '$rootScope', '$state', '$mdDialog', '$filter',
+  function ($scope, $meteor, $rootScope, $state, $mdDialog, $filter) {
   $scope.page = 1;
   $scope.perPage = 3;
   $scope.sort = {name: 1};
@@ -165,7 +166,7 @@ angular.module("socially").controller("PartiesListCtrl", function ($scope, $mete
     $scope.openAddNewPartyModal = function(){
       $mdDialog.show({
         controller: 'AddNewPartyCtrl',
-        templateUrl: 'client/parties/views/add-new-party-modal.ng.html',
+        templateUrl: 'client/parties/views/add-new-party-modal.html',
         clickOutsideToClose:true,
         resolve: {
           parties: function () {
@@ -190,4 +191,4 @@ angular.module("socially").controller("PartiesListCtrl", function ($scope, $mete
       return party.rsvps[rsvpIndex].rsvp === rsvp;
     }
   }
-});
+}]);

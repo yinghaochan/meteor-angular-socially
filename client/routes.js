@@ -1,4 +1,4 @@
-angular.module("socially").run(function ($rootScope, $state) {
+angular.module("socially").run(['$rootScope', '$state', function ($rootScope, $state) {
   $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
     // We can catch the error thrown when the $requireUser promise is rejected
     // and redirect the user back to the main page
@@ -6,20 +6,21 @@ angular.module("socially").run(function ($rootScope, $state) {
       $state.go('parties');
     }
   });
-});
+}]);
 
-angular.module("socially").config(function ($urlRouterProvider, $stateProvider, $locationProvider) {
+angular.module("socially").config(['$urlRouterProvider', '$stateProvider', '$locationProvider',
+  function ($urlRouterProvider, $stateProvider, $locationProvider) {
   $locationProvider.html5Mode(true);
 
   $stateProvider
     .state('parties', {
       url: '/parties',
-      templateUrl: 'client/parties/views/parties-list.ng.html',
+      templateUrl: 'client/parties/views/parties-list.html',
       controller: 'PartiesListCtrl'
     })
     .state('partyDetails', {
       url: '/parties/:partyId',
-      templateUrl: 'client/parties/views/party-details.ng.html',
+      templateUrl: 'client/parties/views/party-details.html',
       controller: 'PartyDetailsCtrl',
       resolve: {
         "currentUser": function($meteor){
@@ -30,13 +31,13 @@ angular.module("socially").config(function ($urlRouterProvider, $stateProvider, 
 
     .state('register',{
       url: '/register',
-      templateUrl: 'client/users/views/register.ng.html',
+      templateUrl: 'client/users/views/register.html',
       controller: 'RegisterCtrl',
       controllerAs: 'rc'
     })
     .state('resetpw', {
       url: '/resetpw',
-      templateUrl: 'client/users/views/reset-password.ng.html',
+      templateUrl: 'client/users/views/reset-password.html',
       controller: 'ResetCtrl',
       controllerAs: 'rpc'
     })
@@ -54,4 +55,4 @@ angular.module("socially").config(function ($urlRouterProvider, $stateProvider, 
     });
 
   $urlRouterProvider.otherwise("/parties");
-});
+}]);
