@@ -13,11 +13,14 @@ Package.onUse(function(api) {
   api.addFiles([
     'client/lib/module.js',
     'client/routes.js',
-    'client/users/controllers/login.js'
+    'client/users/controllers/login.js',
+    'client/parties/controllers/partiesList.js'
   ], 'web.browser');
 
   api.addAssets([
-    'client/users/views/login-browser.html'
+    'client/users/views/login-browser.html',
+    'client/parties/views/parties-list.html',
+    'client/browser-main.html'
   ], 'web.browser');
 });
 
