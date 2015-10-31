@@ -18,7 +18,9 @@ Package.onUse(function(api) {
   ], 'web.cordova');
 
   api.addAssets([
-    'client/users/views/login-mobile.html'
+    'client/users/views/login-mobile.html',
+    'client/parties/views/parties-list.html',
+    'client/mobile-main.html'
   ], 'web.cordova');
 });
 
