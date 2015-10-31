@@ -18,7 +18,8 @@ angular.module('socially.mobile').config(function($stateProvider) {
       url: '/parties',
       views: {
         main: {
-          templateUrl: '/packages/socially-mobile/client/parties/views/parties-list.html'
+          templateUrl: '/packages/socially-mobile/client/parties/views/parties-list.html',
+          controller: 'PartiesListCtrl'
         }
       }
     });
