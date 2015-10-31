@@ -14,7 +14,8 @@ Package.onUse(function(api) {
   api.addFiles([
     'client/lib/module.js',
     'client/routes.js',
-    'client/users/controllers/login.js'
+    'client/users/controllers/login.js',
+    'client/parties/controllers/partiesList.js'
   ], 'web.cordova');
 
   api.addAssets([
