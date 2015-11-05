@@ -17,3 +17,4 @@ es5-shim                # ECMAScript 5 compatibility for older browsers.
 autopublish             # Publish all data to the clients (for prototyping)
 angular@1.2.0-rc.3
 angularui:angular-ui-router
+accounts-password
