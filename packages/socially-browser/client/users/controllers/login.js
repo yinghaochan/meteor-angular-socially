@@ -11,7 +11,7 @@ angular.module("socially.browser").controller("LoginCtrl", function ($meteor, $s
   vm.login = function () {
     $meteor.loginWithPassword(vm.credentials.email, vm.credentials.password).then(
       function () {
-        $state.go('parties');
+        $state.go('socially.parties');
       },
       function (err) {
         vm.error = 'Login error - ' + err;
